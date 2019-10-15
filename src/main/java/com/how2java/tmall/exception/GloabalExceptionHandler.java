@@ -1,9 +1,16 @@
 package com.how2java.tmall.exception;
 
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestController;
+
 import javax.servlet.http.HttpServletRequest;
 
+@RestController
+@ControllerAdvice
 public class GloabalExceptionHandler {
 
+    @ExceptionHandler(value = Exception.class)
     public String defaultErrorHandler(HttpServletRequest request, Exception e) throws Exception {
         e.printStackTrace();
         Class constraintViolationException = Class.forName("org.hibernate.exception.ConstraintViolationException");
